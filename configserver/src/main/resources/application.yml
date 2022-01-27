@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/cah-nithin-c/Dynamic-configuration
+          username: nithin.c@cardinalhealth.com
+          password: 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
+          skip-ssl-validation: true
+          basedir: C:\\Users\\nithin.c\\Documents\\BaseDir\\
+          search-paths: /src/main/resources/
+          default-label: main
+          clone-on-start: true
+      allow-override: true
+      override-none: false
+    stream:
+      kafka:
+        producer:
+         bootstrap-servers: http://localhost:9092
+         key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+         value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+server:
+  port: 8888

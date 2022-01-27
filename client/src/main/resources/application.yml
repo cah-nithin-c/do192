@@ -1,0 +1,31 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8888
+    stream:
+      kafka:
+        consumer:
+         bootstrap-servers: http://localhost:9092
+         group-id: group_id
+         auto-offset-reset: earliest
+         key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+         value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+  config:
+    import: "optional:configserver:"
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  application:
+    name: config-client
+  profiles:
+    active:
+      - dev
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        
+server:
+ port: 9090
